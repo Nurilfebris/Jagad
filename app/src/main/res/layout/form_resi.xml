@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ed_ttd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="377dp"
+            android:layout_height="660dp"
+            android:layout_marginTop="96dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.794"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/lini1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+
+                <EditText
+                    android:id="@+id/ed_noResi"
+                    android:layout_width="340dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/roundedcorner"
+                    android:ems="10"
+                    android:hint="No Resi"
+                    android:inputType="number"
+                    android:paddingLeft="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.492"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lini1" />
+
+                <DatePicker
+                    android:id="@+id/ed_tgl"
+                    android:layout_width="140dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/roundedcorner"
+                    android:ems="10"
+                    android:hint="Tanggal"
+                    android:inputType=""
+                    android:paddingLeft="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/ed_noResi"
+                    app:layout_constraintStart_toStartOf="@+id/ed_noResi"
+                    app:layout_constraintTop_toBottomOf="@+id/ed_noResi" />
+
+                <EditText
+                    android:id="@+id/ed_kdPelanggan"
+                    android:layout_width="340dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundedcorner"
+                    android:ems="10"
+                    android:hint="Kode Pelanggan"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/ed_tgl"
+                    app:layout_constraintStart_toStartOf="@+id/ed_tgl"
+                    app:layout_constraintTop_toBottomOf="@+id/ed_tgl" />
+
+                <EditText
+                    android:id="@+id/ed_nmPelanggan"
+                    android:layout_width="340dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundedcorner"
+                    android:ems="10"
+                    android:hint="Nama Pelanggan"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/ed_kdPelanggan"
+                    app:layout_constraintStart_toStartOf="@+id/ed_kdPelanggan"
+                    app:layout_constraintTop_toBottomOf="@+id/ed_kdPelanggan" />
+
+                <EditText
+                    android:id="@+id/ed_telpPelanggan"
+                    android:layout_width="340dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundedcorner"
+                    android:ems="10"
+                    android:hint="Telepon Pelanggan"
+                    android:inputType="number"
+                    android:paddingLeft="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/ed_nmPelanggan"
+                    app:layout_constraintStart_toStartOf="@+id/ed_nmPelanggan"
+                    app:layout_constraintTop_toBottomOf="@+id/ed_nmPelanggan" />
+
+                <EditText
+                    android:id="@+id/ed_almtPelanggan"
+                    android:layout_width="340dp"
+                    android:layout_height="57dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundedcorner"
+                    android:ems="10"
+                    android:hint="Alamat Pelanggan"
+                    android:inputType="textMultiLine"
+                    android:paddingLeft="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/ed_telpPelanggan"
+                    app:layout_constraintStart_toStartOf="@+id/ed_telpPelanggan"
+                    app:layout_constraintTop_toBottomOf="@+id/ed_telpPelanggan" />
+
+                <EditText
+                    android:id="@+id/ed_kdPenerima"
+                    android:layout_width="340dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundedcorner"
+                    android:ems="10"
+                    android:hint="Kode Penerima"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/ed_almtPelanggan"
+                    app:layout_constraintStart_toStartOf="@+id/ed_almtPelanggan"
+                    app:layout_constraintTop_toBottomOf="@+id/ed_almtPelanggan" />
+                <EditText
+                    android:id="@+id/ed_namaPenerima"
+                    android:layout_width="340dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundedcorner"
+                    android:ems="10"
+                    android:hint="Nama Penerima"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/ed_kdPenerima"
+                    app:layout_constraintStart_toStartOf="@+id/ed_kdPenerima"
+                    app:layout_constraintTop_toBottomOf="@+id/ed_kdPenerima" />
+                <EditText
+                    android:id="@+id/ed_tlpPenerima"
+                    android:layout_width="340dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundedcorner"
+                    android:ems="10"
+                    android:hint="Telepon Penerima"
+                    android:inputType="number"
+                    android:paddingLeft="15dp"
+                    app:layout_constraintEnd_toEndOf="@+id/ed_namaPenerima"
+                    app:layout_constraintStart_toStartOf="@+id/ed_namaPenerima"
+                    app:layout_constraintTop_toBottomOf="@+id/ed_namaPenerima" />
+
+                <!--                <Button-->
+                <!--                    android:id="@+id/btn_addOrder"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:background="@drawable/background_orange"-->
+                <!--                    android:text="Buat Order" />-->
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="4dp"
+    android:layout_marginStart="0dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="10dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_totalloket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:maxLines="1"
+            android:text="Kode Pengiriman"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textColorHint="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_alamatPenerima"
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_pengirim"
+            android:layout_alignStart="@+id/tv_pengirim"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/poppins"
+            android:hint="Lamongan"
+            android:maxLines="1"
+            android:text="Lamongan"
+            android:textColorHint="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_pengirim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_totalloket"
+            android:layout_alignStart="@+id/tv_totalloket"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins"
+            android:hint="Nuril"
+            android:maxLines="1"
+            android:text="Nuril"
+            android:textColorHint="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_proses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/tv_totalloket"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins"
+            android:maxLines="1"
+            android:text="PROSES"
+            android:paddingHorizontal="5dp"
+            android:background="@color/gray"
+            android:textColorHint="@color/black"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_jagad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Jagad"
+        android:textColor="#FF7629"
+        android:textSize="36sp"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ed_pencarianSewa"
+        android:layout_width="349dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/background_putih"
+        android:ems="10"
+        android:hint="Pencarian"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/tv_jagad"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_jagad"
+        app:layout_constraintTop_toBottomOf="@+id/tv_jagad"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/laporanSewa"
+        android:layout_width="355dp"
+        android:layout_height="428dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/ed_pencarianSewa"
+        app:layout_constraintStart_toStartOf="@+id/ed_pencarianSewa"
+        app:layout_constraintTop_toBottomOf="@+id/ed_pencarianSewa">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_laporansewa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:listitem="@layout/list_sewa" />
+
+<!--            <ListView-->
+<!--                android:id="@+id/rv_laporansewa"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                tools:listitem="@layout/list_sewa"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:padding="5dp"-->
+<!--               />-->
+        </ScrollView>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

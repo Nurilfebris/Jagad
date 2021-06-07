@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".add.Add_Sewa">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_jagad2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Jagad"
+                android:textColor="#FF7629"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/tv_sewa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_jagad2"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="37dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Sewa"
+                android:textColor="#FF7629"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/ed_nama"
+                android:layout_width="310dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/tv_sewa"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/background_putih"
+                android:ems="10"
+                android:hint="Nama Peminjam"
+                android:inputType="textPersonName"
+                android:paddingLeft="25dp" />
+
+            <EditText
+                android:id="@+id/ed_noKtp"
+                android:layout_width="310dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/ed_nama"
+                android:layout_alignStart="@+id/ed_nama"
+                android:layout_alignEnd="@+id/ed_nama"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/background_putih"
+                android:ems="10"
+                android:hint="No KTP Peminjam"
+                android:inputType="number"
+                android:paddingLeft="25dp" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="310dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/ed_noKtp"
+                android:layout_alignStart="@+id/ed_noKtp"
+                android:layout_alignEnd="@+id/ed_noKtp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="0dp"
+                android:padding="10dp"
+                android:scrollbarSize="4dp"
+                android:spinnerMode="dropdown"
+                android:theme="@style/ThemeOverlay.MaterialComponents.Light" />
+
+
+            <EditText
+                android:id="@+id/ed_jmlhHari"
+                android:layout_width="310dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/spinner2"
+                android:layout_alignStart="@+id/spinner2"
+                android:layout_alignEnd="@+id/spinner2"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/background_putih"
+                android:ems="10"
+                android:hint="Jumlah Hari"
+                android:inputType="datetime"
+                android:paddingLeft="25dp" />
+
+
+            <EditText
+                android:id="@+id/deskripsi"
+                android:layout_width="302dp"
+                android:layout_height="104dp"
+                android:layout_below="@+id/ed_jmlhHari"
+                android:layout_alignStart="@+id/ed_jmlhHari"
+                android:layout_alignEnd="@+id/ed_jmlhHari"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/background_putih"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Deskripsi"
+                android:inputType="textMultiLine"
+                android:paddingLeft="25dp" />
+
+            <Button
+                android:id="@+id/btnPinjam"
+                android:layout_width="110dp"
+                android:layout_height="47dp"
+                android:layout_below="@+id/deskripsi"
+                android:layout_alignStart="@+id/deskripsi"
+                android:layout_alignEnd="@+id/deskripsi"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="51dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="51dp"
+                android:layout_marginBottom="146dp"
+                android:background="@drawable/background_orange"
+                android:text="Pinjam" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

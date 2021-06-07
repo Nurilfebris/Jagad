@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:clickable="true"
+    android:elevation="50dp"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:padding="50dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_putih">
+
+
+        <TextView
+            android:id="@+id/tv_totalloket"
+            android:layout_width="211dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:hint="Kode Pengiriman"
+            android:maxLines="1"
+            android:text="Kode Pengiriman"
+            android:textColor="@android:color/black"
+            android:textColorHint="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_noKtp"
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_pengirim"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/tv_pengirim"
+            android:fontFamily="@font/poppins"
+            android:hint="Nuril Febri"
+            android:maxLines="1"
+            android:text="Nuril Febri"
+            android:textColorHint="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_pengirim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_totalloket"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins"
+            android:hint="Pengirim :"
+            android:maxLines="1"
+            android:text="Pengirim"
+            android:textColorHint="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_pengirim"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/poppins"
+            android:hint="18 Januari 2020"
+            android:maxLines="1"
+            android:text="18 Januari 2020"
+            android:textColor="@color/btn"
+            android:textColorHint="@color/btn"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_nokode"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_totalloket"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="1dp"
+            android:layout_toEndOf="@+id/tv_totalloket"
+            android:fontFamily="@font/poppins_semibold"
+            android:hint="002"
+            android:maxLines="1"
+            android:text="001"
+            android:textColor="#FF5722"
+            android:textColorHint="@color/btn"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_tambah"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_below="@+id/tv_nokode"
+            android:layout_alignEnd="@+id/tv_nokode"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/poppins"
+            android:text="Tambahkan"
+            android:textSize="12sp"
+            app:cornerRadius="15dp" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

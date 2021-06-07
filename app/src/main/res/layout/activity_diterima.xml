@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".DiterimaActivity">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/spinStatus"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="70dp"
+            android:orientation="vertical"
+            android:hint="@string/penerima"
+            android:textColorHint="@color/black"
+            app:endIconMode="dropdown_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:editable="false"
+                android:fontFamily="@font/poppins"
+                android:textSize="7pt"
+                tools:ignore="LabelFor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <Spinner-->
+<!--            android:id="@+id/spinStatus"-->
+<!--            android:layout_width="340dp"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:scrollbarSize="4dp"-->
+<!--            android:spinnerMode="dropdown"-->
+<!--            android:theme="@style/ThemeOverlay.MaterialComponents.Light"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/teksbuil"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:boxStrokeColor="@color/btn"
+            app:layout_constraintEnd_toEndOf="@+id/spinStatus"
+            app:layout_constraintStart_toStartOf="@+id/spinStatus"
+            app:layout_constraintTop_toBottomOf="@+id/spinStatus">
+
+            <EditText
+                android:id="@+id/penerima"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Nama Penerima"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="193dp"
+            android:layout_height="168dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/teksbuil"
+            app:layout_constraintVertical_bias="0.078"
+            app:srcCompat="@drawable/ic_baseline_image_24" />
+
+        <Button
+            android:id="@+id/capture_btn"
+            android:layout_width="115dp"
+            android:layout_height="39dp"
+            android:background="@drawable/roundbtn"
+            android:text="Capture"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.63" />
+
+        <Button
+            android:id="@+id/save_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/biru"
+            android:text="Simpan"
+            app:layout_constraintEnd_toEndOf="@+id/teksbuil"
+            app:layout_constraintStart_toStartOf="@+id/teksbuil"
+            app:layout_constraintTop_toBottomOf="@+id/capture_btn" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

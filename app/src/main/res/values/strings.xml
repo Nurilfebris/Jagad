@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Aplikasi Jagad</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="noPengiriman_wajib_diisi" />
+    <string name="namaPenerima_wajib_diisi" />
+    <string name="statusPenerima_wajib_diisi" />
+    <string name="keterangan_wajib_diisi" />
+    <string name="signature_wajib_diisi" />
+    <string name="kode_pengiriman">Kode Pengiriman</string>
+    <string name="pengirim">Pengirim</string>
+    <string name="nama_pengirim">Nama Pengirim</string>
+    <string name="no_telp_pengirim">No Telp Pengirim</string>
+    <string name="vira_ayu_indita_ashara">Vira Ayu Indita Ashara</string>
+    <string name="_08989238293">08989238293</string>
+    <string name="penerima">Penerima</string>
+    <string name="nama_penerima">Nama Penerima</string>
+    <string name="no_telp_penerima">No Telp Penerima</string>
+    <string name="alamat_penerima">Alamat Penerima</string>
+    <string name="padhisa_yusuf_athif_maraya">Padhisa Yusuf Athif Maraya</string>
+    <string name="_0989898989">0989898989</string>
+    <string name="komp_griya_bandung_asri_1_blok_e_134_rt_06_rw_14">Komp. Griya Bandung Asri 1 BLOK E.134 RT 06 / RW 14</string>
+    <string name="rincian_order">Rincian Order</string>
+    <string name="waktu_order">Waktu Order</string>
+    <string name="tanggal_order">Tanggal Order</string>
+    <string name="berat_barang">Berat Barang</string>
+    <string name="_10_00_am">10.00 AM</string>
+    <string name="_12_januari_2021">12 Januari 2021</string>
+    <string name="_1_kg">1 kg</string>
+    <string name="harga">Harga</string>
+    <string name="status_pembayaran">Status Pembayaran</string>
+    <string name="kurir">Kurir</string>
+    <string name="nuril_febri_s">Nuril Febri S</string>
+    <string name="lunas">Lunas</string>
+    <string name="rp_20_000">Rp. 20.000</string>
+    <string name="diterima">Diterima</string>
+    <string name="ditolak">Return</string>
+    <string name="Return">return</string>
+    <string name="jumlah_order">jumlah_order</string>
+
+    <string-array name="status">
+        <item>Status Pembayaran</item>
+        <item>Lunas</item>
+        <item>Belum</item>
+    </string-array>
+    <string-array name="kurir">
+        <item>Pilih Kurir</item>
+        <item>Paijo</item>
+        <item>Paimen</item>
+        <item>Bima</item>
+        <item>Cakra</item>
+        <item>Galih</item>
+        <item>Wahyu</item>
+    </string-array>
+</resources>

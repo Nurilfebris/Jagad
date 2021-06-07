@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:clickable="true"
+    android:elevation="50dp"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:padding="50dp"
+    android:layout_margin="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@drawable/background_putih">
+
+        <TextView
+            android:id="@+id/tv_namaPeminjam"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:maxLines="1"
+            android:text="Nama Peminjam :"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_namaP"
+            android:layout_width="169dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_namaPeminjam"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="36dp"
+            android:layout_toEndOf="@+id/tv_namaPeminjam"
+            android:fontFamily="@font/poppins_semibold"
+            android:maxLines="1"
+            android:textColor="#FF5722"
+            android:textColorHint="@color/btn"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_noKtppem"
+            android:layout_width="169dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_namaP"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="43dp"
+            android:layout_toEndOf="@+id/tv_noKTPem"
+            android:fontFamily="@font/poppins"
+            android:maxLines="1"
+            android:textColorHint="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_noKTPem"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_namaPeminjam"
+            android:layout_alignStart="@+id/tv_namaPeminjam"
+            android:layout_alignEnd="@+id/tv_namaPeminjam"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="-5dp"
+            android:fontFamily="@font/poppins"
+            android:maxLines="1"
+            android:text="No KTP Peminjam :"
+            android:textColorHint="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_kendaraan"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_jumlah"
+            android:layout_alignStart="@+id/tv_jumlah"
+            android:layout_alignEnd="@+id/tv_jumlah"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="-4dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/poppins"
+            android:text="Kendaraan : " />
+
+        <TextView
+            android:id="@+id/tv_jmlHari"
+            android:layout_width="169dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_noKtppem"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="43dp"
+            android:layout_toEndOf="@+id/tv_jumlah"
+            android:fontFamily="@font/poppins" />
+
+        <TextView
+            android:id="@+id/tv_jenis"
+            android:layout_width="169dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_jmlHari"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="93dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="44dp"
+            android:layout_toEndOf="@+id/tv_kendaraan"
+            android:fontFamily="@font/poppins" />
+
+        <TextView
+            android:id="@+id/tv_jumlah"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_noKTPem"
+            android:layout_alignEnd="@+id/tv_noKTPem"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="72dp"
+            android:text="Jumlah Hari" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--    xmlns:tools="http://schemas.android.com/tools"-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:layout_margin="15dp"-->
+    <!--    app:layout_constraintCircleRadius="5dp">-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView10"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="32dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:text="Nama Peminjam : "-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView17"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/textView10"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/textView10"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/textView10" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView18"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="32dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:text="No KTP : "-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/textView10" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView20"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="32dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:text="Jumlah Hari:"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/textView18" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView21"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="32dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:text="Kendaraan :"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/textView20" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_namaP"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="TextView"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/textView10"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/textView17"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/textView10" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_noKtppem"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:text="TextView"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/textView18"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/textView18"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/textView18" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_jmlhHari"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:text="TextView"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/textView20"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/textView20"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/textView20" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_jenis"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="16dp"-->
+    <!--        android:text="TextView"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/textView21"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/textView21"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/textView21" />-->
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ed_ttd"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="377dp"
+        android:layout_height="660dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.584"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/lini1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/ed_nmPengirim"
+                android:layout_width="340dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/roundedcorner"
+                android:ems="10"
+                android:hint="Nama Pengirim"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lini1" />
+
+            <EditText
+                android:id="@+id/ed_noPengirim"
+                android:layout_width="340dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedcorner"
+                android:ems="10"
+                android:hint="No Telp Pengirim"
+                android:inputType="number"
+                android:paddingLeft="15dp"
+                app:layout_constraintEnd_toEndOf="@+id/ed_nmPengirim"
+                app:layout_constraintStart_toStartOf="@+id/ed_nmPengirim"
+                app:layout_constraintTop_toBottomOf="@+id/ed_nmPengirim" />
+
+            <EditText
+                android:id="@+id/ed_nmPenerima"
+                android:layout_width="340dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedcorner"
+                android:ems="10"
+                android:hint="Nama Penerima"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp"
+                app:layout_constraintEnd_toEndOf="@+id/ed_noPengirim"
+                app:layout_constraintStart_toStartOf="@+id/ed_noPengirim"
+                app:layout_constraintTop_toBottomOf="@+id/ed_noPengirim" />
+
+            <EditText
+                android:id="@+id/ed_noPenerima"
+                android:layout_width="340dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedcorner"
+                android:ems="10"
+                android:hint="No Telp Penerima"
+                android:inputType="textPersonName"
+                android:paddingLeft="15dp"
+                app:layout_constraintEnd_toEndOf="@+id/ed_nmPenerima"
+                app:layout_constraintStart_toStartOf="@+id/ed_nmPenerima"
+                app:layout_constraintTop_toBottomOf="@+id/ed_nmPenerima" />
+
+            <EditText
+                android:id="@+id/ed_almtPenerima"
+                android:layout_width="340dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedcorner"
+                android:ems="10"
+                android:hint="Alamat Penerima"
+                android:inputType="textMultiLine"
+                android:paddingLeft="15dp"
+                app:layout_constraintEnd_toEndOf="@+id/ed_noPenerima"
+                app:layout_constraintStart_toStartOf="@+id/ed_noPenerima"
+                app:layout_constraintTop_toBottomOf="@+id/ed_noPenerima" />
+
+            <EditText
+                android:id="@+id/ed_beratBarang"
+                android:layout_width="340dp"
+                android:layout_height="57dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedcorner"
+                android:ems="10"
+                android:hint="Berat Barang"
+                android:inputType="number"
+                android:paddingLeft="15dp"
+                app:layout_constraintEnd_toEndOf="@+id/ed_almtPenerima"
+                app:layout_constraintStart_toStartOf="@+id/ed_almtPenerima"
+                app:layout_constraintTop_toBottomOf="@+id/ed_almtPenerima" />
+
+            <EditText
+                android:id="@+id/ed_harga"
+                android:layout_width="340dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedcorner"
+                android:ems="10"
+                android:hint="Harga Ongkir"
+                android:inputType="numberDecimal"
+                android:paddingLeft="15dp"
+                app:layout_constraintEnd_toEndOf="@+id/ed_beratBarang"
+                app:layout_constraintStart_toStartOf="@+id/ed_beratBarang"
+                app:layout_constraintTop_toBottomOf="@+id/ed_beratBarang" />
+
+            <Spinner
+                android:id="@+id/spinStatus"
+                android:layout_width="340dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/ed_harga"
+                android:layout_alignStart="@+id/ed_harga"
+                android:layout_alignEnd="@+id/ed_harga"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="0dp"
+                android:entries="@array/status"
+                android:padding="10dp"
+                android:scrollbarSize="4dp"
+                android:spinnerMode="dropdown"
+                android:theme="@style/ThemeOverlay.MaterialComponents.Light" />
+
+            <Spinner
+                android:id="@+id/spinKurir"
+                android:layout_width="340dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/spinStatus"
+                android:layout_alignStart="@+id/spinStatus"
+                android:layout_alignEnd="@+id/spinStatus"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="0dp"
+                android:entries="@array/kurir"
+                android:padding="10dp"
+                android:scrollbarSize="4dp"
+                android:spinnerMode="dropdown"
+                android:theme="@style/ThemeOverlay.MaterialComponents.Light" />
+
+            <Button
+                android:id="@+id/btn_addOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buat Order" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
