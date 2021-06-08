@@ -38,6 +38,7 @@ import kotlinx.android.synthetic.main.activity_detail_amplop.*
 import kotlinx.android.synthetic.main.activity_detail_order.*
 import kotlinx.android.synthetic.main.activity_diterima.*
 import kotlinx.android.synthetic.main.rejected.view.*
+import retrofit2.Response
 import java.util.*
 
 class DetailAmplopActivity : AppCompatActivity() {
@@ -88,21 +89,44 @@ class DetailAmplopActivity : AppCompatActivity() {
             detailAlamat.text = data?.alamat_pengirim
             detailTanggal.text = data?.tanggal
             detailStatus.text = data?.status
-            if (data!!.status == "1"){
+            if (data!!.status == "2"){
                 btn_tolak.setOnClickListener {
-                    updateGagal(
+
+                    val builder = AlertDialog.Builder(this)
+                    val view = layoutInflater.inflate(R.layout.rejected, null)
+                    builder.setView(view)
+                    val dialog = builder.show()
+                    val ditolak = view.findViewById<EditText>(R.id.penolak).text
+
+                    view.namaDriver.setText(data.nama_driver)
+
+                    view.save_builders.setOnClickListener {
+                        updateGagal(
+                            id_amplop = data!!.id_amplop,
+                            mobile_driver_ditolak_alasan = "Babak Belur",
+                            mobile_driver_pengantar = "PIK"
+                        )
+//                        amplop.child("return").setValue(ditolak.toString())
+//                        amplop.child("status").setValue("Return")
+//                        dialog.dismiss()
+//                        btn_terima.visibility = View.INVISIBLE
+//                        btn_tolak.visibility = View.INVISIBLE
+                    }
+
+                    view.close_builder.setOnClickListener {
+                        dialog.dismiss()
+                    }
+
+                }
+                btn_terima.setOnClickListener {
+                    updateSukses(
                         id_amplop = data!!.id_amplop,
-                        mobile_driver_ditolak_alasan = "Babak Belur",
-                        mobile_driver_pengantar = "PIK"
+                        mobile_driver_diterima_nama ="Si Alamat C",
+                        mobile_driver_diterima_foto ="catur.png",
+                        mobile_driver_diterima_ttd ="ctur_ttd.png",
+                        mobile_driver_diterima_jenis_penerima ="1",
+                        mobile_driver_pengantar="IPIK"
                     )
-//                val builder = AlertDialog.Builder(this)
-//                val view = layoutInflater.inflate(R.layout.rejected, null)
-//                builder.setView(view)
-//                val dialog = builder.show()
-//                Log.d("hello", data!!.id_amplop)
-//                view.close_builders.setOnClickListener {
-//                    dialog.dismiss()
-//                }
                 }
             }else{
                 btn_tolak.visibility=View.GONE
@@ -127,16 +151,16 @@ class DetailAmplopActivity : AppCompatActivity() {
 //            .child(idTTB)
 //
 //
-        btn_terima.setOnClickListener {
-
+//        btn_terima.setOnClickListener {
+//
 //            startActivity(Intent(this, DiterimaActivity::class.java))
-
-            val builder = AlertDialog.Builder(this)
-            val view = layoutInflater.inflate(R.layout.accepted, null)
-            builder.setView(view)
-            val dialog = builder.show()
-            val penerima = view.findViewById<EditText>(R.id.penerima).text
-
+//
+//            val builder = AlertDialog.Builder(this)
+//            val view = layoutInflater.inflate(R.layout.accepted, null)
+//            builder.setView(view)
+//            val dialog = builder.show()
+//            val penerima = view.findViewById<EditText>(R.id.penerima).text
+//
 //            view.save_builder.setOnClickListener {
 //                amplop.child("diterima").setValue(penerima.toString())
 //                amplop.child("status").setValue("Diterima")
@@ -144,11 +168,11 @@ class DetailAmplopActivity : AppCompatActivity() {
 //                btn_terima.visibility = View.INVISIBLE
 //                btn_tolak.visibility = View.INVISIBLE
 //            }
-
-            view.close_builder.setOnClickListener {
-                dialog.dismiss()
-            }
-        }
+//
+//            view.close_builder.setOnClickListener {
+//                dialog.dismiss()
+//            }
+//        }
 
 
 //        btn_tolak.setOnClickListener {
@@ -185,12 +209,40 @@ class DetailAmplopActivity : AppCompatActivity() {
         viewModel.myResponseUpdateGagal.observe(this, { response ->
             when {
                 response.isSuccessful -> {
+
                     Log.d("haha", response.body().toString())
                     Log.d("haha", response.code().toString())
+
                 }
             }
         })
 
+    }
+    private  fun updateSukses(
+        id_amplop: String,
+        mobile_driver_diterima_nama : String,
+        mobile_driver_diterima_foto : String,
+        mobile_driver_diterima_ttd : String,
+        mobile_driver_diterima_jenis_penerima : String,
+        mobile_driver_pengantar : String
+    ){
+        viewModel.putUpdateSuksesViewModel(
+            id_amplop,
+            mobile_driver_diterima_nama ,
+            mobile_driver_diterima_foto ,
+            mobile_driver_diterima_ttd ,
+            mobile_driver_diterima_jenis_penerima ,
+            mobile_driver_pengantar
+        )
+        viewModel.myResponseUpdateSukses.observe(this,{
+            response ->
+            when{
+                response.isSuccessful->{
+                    Log.d("hahasukses", response.body().toString())
+                    Log.d("hahasukses", response.code().toString())
+                }
+            }
+        })
     }
 
     override fun onSupportNavigateUp(): Boolean {

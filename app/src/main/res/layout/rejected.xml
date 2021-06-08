@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/accepted"
     android:layout_width="350dp"
-    android:layout_height="220dp"
+    android:layout_height="250dp"
     android:layout_gravity="center"
     app:cardCornerRadius="10dp"
     android:backgroundTint="@color/white">
@@ -33,27 +33,46 @@
             android:hint="Alasan Ditolak"
             android:inputType="textLongMessage"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_namaDriver"
+            app:layout_constraintVertical_bias="0.181"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <TextView
+            android:id="@+id/tv_namaDriver"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="50dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_semibold"
+            android:inputType="textLongMessage"
+            android:text="Nama Driver  : "
+            android:textColor="@color/biru"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/teksbuild"-->
-<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="50dp"-->
-<!--            app:boxStrokeColor="@color/btn"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
+        <TextView
+            android:id="@+id/namaDriver"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/poppins_semibold"
+            android:inputType="textLongMessage"
+            android:text="IPIK"
+            android:textColor="@color/biru"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_namaDriver"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_namaDriver"
+            app:layout_constraintTop_toTopOf="@+id/tv_namaDriver" />
 
-<!--            -->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <Button
             android:id="@+id/save_builders"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="@color/red"
             android:text="Simpan"
             app:layout_constraintEnd_toEndOf="@+id/penolak"

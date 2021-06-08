@@ -1,9 +1,10 @@
-package com.aplikasijagad.kurir
+package com.aplikasijagad.Kategori
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.aplikasijagad.R
+import com.aplikasijagad.kurir.ProfileKurirFragment
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_dashboard_kurir.*

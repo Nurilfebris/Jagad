@@ -1,4 +1,4 @@
-package com.aplikasijagad.kurir
+package com.aplikasijagad.Kategori
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,6 +21,7 @@ import com.aplikasijagad.ViewModel.MainViewModelFactory
 import com.aplikasijagad.adapter.ResiAdapter
 import com.aplikasijagad.databinding.FragmentHomeKurirBinding
 import com.aplikasijagad.databinding.FragmentKategoriBinding
+import com.aplikasijagad.kurir.DashboardKurir
 import com.aplikasijagad.models.SURATJALAN
 import com.aplikasijagad.models.Users
 import com.google.firebase.auth.FirebaseAuth
@@ -30,6 +31,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_home_kurir.*
+import kotlinx.android.synthetic.main.fragment_kategori.*
 import kotlinx.android.synthetic.main.list_dashboard.*
 
 class KategoriFragment : Fragment(), ResiListener, View.OnClickListener {
@@ -118,6 +120,7 @@ class KategoriFragment : Fragment(), ResiListener, View.OnClickListener {
                         for (userSnapshot in p0.children) {
                             val data = userSnapshot.getValue(Users::class.java)
                             data?.let { listUsers.add(it) }
+                            tv_namadriver.text=data!!.name
                         }
                     }
                 }

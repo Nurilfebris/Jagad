@@ -9,6 +9,7 @@ import com.aplikasijagad.API.Repository
 import com.aplikasijagad.Model.APICoronaProv
 import com.aplikasijagad.Model.ApiSPB
 import com.aplikasijagad.Model.DataAPI
+import com.aplikasijagad.models.DataBerhasil
 import com.aplikasijagad.models.ResultGagal
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -16,6 +17,7 @@ import retrofit2.Response
 class MainViewModel(private val repository: Repository) : ViewModel() {
     val myResponse: MutableLiveData<Response<List<DataAPI>>> = MutableLiveData()
     val myResponseUpdateGagal: MutableLiveData<Response<ResultGagal>> = MutableLiveData()
+    val myResponseUpdateSukses: MutableLiveData<Response<DataBerhasil>> = MutableLiveData()
 
     fun getResiviewModel() {
         viewModelScope.launch {
@@ -36,6 +38,27 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
                 mobile_driver_pengantar
             )
             myResponseUpdateGagal.value = response
+        }
+    }
+
+    fun putUpdateSuksesViewModel(
+        id_amplop: String,
+        mobile_driver_diterima_nama : String,
+        mobile_driver_diterima_foto : String,
+        mobile_driver_diterima_ttd : String,
+        mobile_driver_diterima_jenis_penerima : String,
+        mobile_driver_pengantar : String
+    ) {
+        viewModelScope.launch {
+            val response = repository.putDataSukses(
+                id_amplop,
+                mobile_driver_diterima_nama ,
+                mobile_driver_diterima_foto ,
+                mobile_driver_diterima_ttd ,
+                mobile_driver_diterima_jenis_penerima ,
+                mobile_driver_pengantar
+            )
+            myResponseUpdateSukses.value = response
         }
     }
 }

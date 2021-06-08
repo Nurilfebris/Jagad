@@ -16,12 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aplikasijagad.*
 import com.aplikasijagad.API.Repository
 import com.aplikasijagad.API.ResiListener
+import com.aplikasijagad.Kategori.KategoriActivity
 import com.aplikasijagad.Model.DataAPI
 import com.aplikasijagad.R
 import com.aplikasijagad.ViewModel.MainViewModel
 import com.aplikasijagad.ViewModel.MainViewModelFactory
 import com.aplikasijagad.adapter.ResiAdapter
 import com.aplikasijagad.adapter.SuratJalanAdapter
+import com.aplikasijagad.auth.LoginActivity
 import com.aplikasijagad.database.Order
 import com.aplikasijagad.models.Users
 import com.aplikasijagad.databinding.FragmentHomeKurirBinding
@@ -29,7 +31,7 @@ import com.aplikasijagad.models.SURATJALAN
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_home_kurir.tv_totkurir
+import kotlinx.android.synthetic.main.fragment_home_kurir.*
 import kotlinx.android.synthetic.main.list_amplop.view.*
 import kotlinx.android.synthetic.main.list_dashboard.*
 import kotlinx.android.synthetic.main.list_laporan_kurir.view.*
@@ -67,6 +69,7 @@ class HomeKurirFragment : Fragment(), ResiListener {
 
         return binding.root
 
+
     }
 
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
@@ -82,13 +85,16 @@ class HomeKurirFragment : Fragment(), ResiListener {
                 }
             } else {
             }
-
-
         })
 
+        imageView2.setOnClickListener {
+            startActivity(Intent(requireContext(), KategoriActivity::class.java))
+        }
+
         setupRecylerview()
-        infoProfile()
+        //infoProfile()
         //orderKurir()
+
 
     }
 
@@ -99,30 +105,6 @@ class HomeKurirFragment : Fragment(), ResiListener {
 
     }
 
-    private fun infoProfile() {
-        val uid = user.uid
-
-        database.getReference("Users").orderByChild("uid").equalTo(uid)
-            .addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Error",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-
-                override fun onDataChange(p0: DataSnapshot) {
-                    if (p0.exists()) {
-                        for (userSnapshot in p0.children) {
-                            val data = userSnapshot.getValue(Users::class.java)
-                            data?.let { listUsers.add(it) }
-                            tv_totkurir.text = data!!.name
-                        }
-                    }
-                }
-            })
-    }
 
     companion object {
         @JvmStatic

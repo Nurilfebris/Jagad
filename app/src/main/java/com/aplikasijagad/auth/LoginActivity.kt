@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.aplikasijagad.Kategori.KategoriActivity
 import com.aplikasijagad.admin.DashboardAdmin
 import com.aplikasijagad.kurir.DashboardKurir
 import com.aplikasijagad.R
@@ -126,7 +127,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(
                         Intent(
                             this@LoginActivity ,
-                            DashboardKurir::class.java
+                            KategoriActivity::class.java
                         )
                     )
                 } else {

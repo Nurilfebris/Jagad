@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.aplikasijagad.Kategori.KategoriActivity
 import com.aplikasijagad.admin.DashboardAdmin
 import com.aplikasijagad.auth.LoginActivity
 import com.aplikasijagad.auth.SignupActivity
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                             if (pass!!.usertype == "Spv") {
                                 startActivity(Intent(this@MainActivity, DashboardAdmin::class.java))
                             } else if (pass!!.usertype == "Driver") {
-                                startActivity(Intent(this@MainActivity, DashboardKurir::class.java))
+                                startActivity(Intent(this@MainActivity, KategoriActivity::class.java))
                             }
                         }
                     }

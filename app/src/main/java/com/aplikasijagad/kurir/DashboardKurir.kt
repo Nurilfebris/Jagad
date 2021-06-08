@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.aplikasijagad.API.RestApiService
+import com.aplikasijagad.Kategori.KategoriFragment
 import com.aplikasijagad.R
 import com.aplikasijagad.models.Location
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
