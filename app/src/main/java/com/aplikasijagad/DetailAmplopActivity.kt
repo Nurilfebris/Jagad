@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.aplikasijagad.API.Repository
 import com.aplikasijagad.Model.DataAPI
+import com.aplikasijagad.Signature.SigantureActivity
 import com.aplikasijagad.ViewModel.MainViewModel
 import com.aplikasijagad.ViewModel.MainViewModelFactory
 import com.aplikasijagad.auth.LoginActivity
@@ -126,6 +127,7 @@ class DetailAmplopActivity : AppCompatActivity() {
 //                    }
 
                 }
+
                 btn_terima.setOnClickListener {
 
                     startActivity(Intent(this, DiterimaActivity::class.java))
@@ -145,29 +147,12 @@ class DetailAmplopActivity : AppCompatActivity() {
 //                        mobile_driver_pengantar="IPIK"
 //                    )
                 }
+
             }else{
                 btn_tolak.visibility=View.GONE
             }
-
-
-
         }
 
-
-//        if (data?.status == "Return" || data?.status == "Diterima") {
-//            btn_terima.visibility = View.INVISIBLE
-//            btn_tolak.visibility = View.INVISIBLE
-//        } else {
-//            btn_terima.visibility = View.VISIBLE
-//            btn_tolak.visibility = View.VISIBLE
-//        }
-//
-//        val idSPB = data?.idSPB.toString()
-//        val idTTB = data?.nottb.toString()
-//        val amplop = database.getReference("SURATJALAN").child(idSPB).child("TTB")
-//            .child(idTTB)
-//
-//
 //        btn_terima.setOnClickListener {
 //
 //            startActivity(Intent(this, DiterimaActivity::class.java))
@@ -235,6 +220,7 @@ class DetailAmplopActivity : AppCompatActivity() {
         })
 
     }
+
     private  fun updateSukses(
         id_amplop: String,
         mobile_driver_diterima_nama : String,

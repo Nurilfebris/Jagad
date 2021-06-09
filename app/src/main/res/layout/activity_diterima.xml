@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".DiterimaActivity">
@@ -14,9 +14,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="70dp"
-            android:orientation="vertical"
+            android:layout_marginTop="20dp"
             android:hint="@string/penerima"
+            android:orientation="vertical"
             android:textColorHint="@color/black"
             app:endIconMode="dropdown_menu"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_below="@id/spinStatus"
             app:boxStrokeColor="@color/btn"
             android:layout_marginHorizontal="30dp"
             app:layout_constraintEnd_toEndOf="@+id/spinStatus"
@@ -72,38 +73,120 @@
             android:id="@+id/image_view"
             android:layout_width="193dp"
             android:layout_height="168dp"
+            android:layout_below="@+id/teksbuil"
+            android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/teksbuil"
-            app:layout_constraintVertical_bias="0.078"
-            app:srcCompat="@drawable/ic_baseline_image_24" />
-
-        <Button
-            android:id="@+id/capture_btn"
-            android:layout_width="115dp"
-            android:layout_height="39dp"
-            android:background="@drawable/roundbtn"
-            android:text="Capture"
-            android:textColor="#FFFFFF"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_baseline_image_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.63" />
+            app:layout_constraintVertical_bias="0.33" />
 
         <Button
-            android:id="@+id/save_data"
+            android:id="@+id/capture_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/biru"
-            android:text="Simpan"
-            app:layout_constraintEnd_toEndOf="@+id/teksbuil"
-            app:layout_constraintStart_toStartOf="@+id/teksbuil"
-            app:layout_constraintTop_toBottomOf="@+id/capture_btn" />
+            android:layout_below="@+id/image_view"
+            android:layout_alignStart="@+id/image_view"
+            android:layout_alignEnd="@+id/image_view"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/roundbtn"
+            android:text="Capture"
+            android:textColor="#FFFFFF" />
 
+        <LinearLayout
+            android:id="@+id/linearMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/capture_btn"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:text="Tanda Tangan Disini"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/signatureContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="30dp"
+            android:layout_above="@+id/linearButton"
+            android:layout_below="@id/linearMessage">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/signatureDescription"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorPrimary" />
+
+            <com.github.gcacace.signaturepad.views.SignaturePad
+                android:id="@+id/signaturePad"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_border"
+                app:penColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/signatureDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:text="*Saya Setuju dengan Syarat dan Ketentuan"
+                android:textColor="@android:color/black" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnClear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_baseline_delete_24"
+                android:enabled="false"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="Clear"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_baseline_save_24"
+                android:enabled="false"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="Save"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </layout>

@@ -175,19 +175,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
+
         <Button
             android:id="@+id/btn_terima"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:backgroundTint="@color/biru"
-            android:text="@string/diterima"/>
+            android:text="@string/diterima"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/btn_tolak"
             android:layout_width="match_parent"
-            android:layout_below="@id/btn_terima"
             android:layout_height="50dp"
+            android:layout_below="@id/btn_terima"
             android:backgroundTint="@color/red"
-            android:text="@string/Return"/>
+            android:text="@string/Return"
+            android:textColor="@color/white" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
