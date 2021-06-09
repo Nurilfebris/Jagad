@@ -14,6 +14,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -37,6 +38,7 @@ import kotlinx.android.synthetic.main.accepted.view.*
 import kotlinx.android.synthetic.main.activity_detail_amplop.*
 import kotlinx.android.synthetic.main.activity_detail_order.*
 import kotlinx.android.synthetic.main.activity_diterima.*
+import kotlinx.android.synthetic.main.rejected.*
 import kotlinx.android.synthetic.main.rejected.view.*
 import retrofit2.Response
 import java.util.*
@@ -96,16 +98,22 @@ class DetailAmplopActivity : AppCompatActivity() {
                     val view = layoutInflater.inflate(R.layout.rejected, null)
                     builder.setView(view)
                     val dialog = builder.show()
-                    val ditolak = view.findViewById<EditText>(R.id.penolak).text
+//                    val ditolak = view.findViewById<EditText>(R.id.penolak).text
+
 
                     view.namaDriver.setText(data.nama_driver)
 
                     view.save_builders.setOnClickListener {
+//                        val ditolak = view.findViewById<EditText>(R.id.penolak).text
+                        Log.d("coba",view.namaDriver.text.toString())
+                        Log.d("coba",view.penolak.text.toString())
+
                         updateGagal(
                             id_amplop = data!!.id_amplop,
-                            mobile_driver_ditolak_alasan = "Babak Belur",
-                            mobile_driver_pengantar = "PIK"
+                            mobile_driver_ditolak_alasan = view.penolak.text.toString(),
+                            mobile_driver_pengantar = data!!.nama_driver
                         )
+
 //                        amplop.child("return").setValue(ditolak.toString())
 //                        amplop.child("status").setValue("Return")
 //                        dialog.dismiss()
@@ -113,20 +121,29 @@ class DetailAmplopActivity : AppCompatActivity() {
 //                        btn_tolak.visibility = View.INVISIBLE
                     }
 
-                    view.close_builder.setOnClickListener {
-                        dialog.dismiss()
-                    }
+//                    view.close_builders.setOnClickListener {
+//                        dialog.dismiss()
+//                    }
 
                 }
                 btn_terima.setOnClickListener {
-                    updateSukses(
-                        id_amplop = data!!.id_amplop,
-                        mobile_driver_diterima_nama ="Si Alamat C",
-                        mobile_driver_diterima_foto ="catur.png",
-                        mobile_driver_diterima_ttd ="ctur_ttd.png",
-                        mobile_driver_diterima_jenis_penerima ="1",
-                        mobile_driver_pengantar="IPIK"
-                    )
+
+                    startActivity(Intent(this, DiterimaActivity::class.java))
+
+//                    val builder = AlertDialog.Builder(this)
+//                    val view = layoutInflater.inflate(R.layout.accepted, null)
+//                    builder.setView(view)
+//                    val dialog = builder.show()
+//                    val ditolak = view.findViewById<EditText>(R.id.penolak).text
+//
+//                    updateSukses(
+//                        id_amplop = data!!.id_amplop,
+//                        mobile_driver_diterima_nama ="Si Alamat C",
+//                        mobile_driver_diterima_foto ="catur.png",
+//                        mobile_driver_diterima_ttd ="ctur_ttd.png",
+//                        mobile_driver_diterima_jenis_penerima ="1",
+//                        mobile_driver_pengantar="IPIK"
+//                    )
                 }
             }else{
                 btn_tolak.visibility=View.GONE
@@ -209,7 +226,7 @@ class DetailAmplopActivity : AppCompatActivity() {
         viewModel.myResponseUpdateGagal.observe(this, { response ->
             when {
                 response.isSuccessful -> {
-
+                    Log.d("bebas", penolak.text.toString())
                     Log.d("haha", response.body().toString())
                     Log.d("haha", response.code().toString())
 
@@ -249,8 +266,6 @@ class DetailAmplopActivity : AppCompatActivity() {
         onBackPressed()
         return true
     }
-
-
 
     companion object {
         const val EXTRA_DATA = "extra_data"
