@@ -122,9 +122,9 @@ class DetailAmplopActivity : AppCompatActivity() {
 //                        btn_tolak.visibility = View.INVISIBLE
                     }
 
-//                    view.close_builders.setOnClickListener {
-//                        dialog.dismiss()
-//                    }
+                    view.close_builders.setOnClickListener {
+                        dialog.dismiss()
+                    }
 
                 }
 
@@ -132,20 +132,6 @@ class DetailAmplopActivity : AppCompatActivity() {
 
                     startActivity(Intent(this, DiterimaActivity::class.java))
 
-//                    val builder = AlertDialog.Builder(this)
-//                    val view = layoutInflater.inflate(R.layout.accepted, null)
-//                    builder.setView(view)
-//                    val dialog = builder.show()
-//                    val ditolak = view.findViewById<EditText>(R.id.penolak).text
-//
-//                    updateSukses(
-//                        id_amplop = data!!.id_amplop,
-//                        mobile_driver_diterima_nama ="Si Alamat C",
-//                        mobile_driver_diterima_foto ="catur.png",
-//                        mobile_driver_diterima_ttd ="ctur_ttd.png",
-//                        mobile_driver_diterima_jenis_penerima ="1",
-//                        mobile_driver_pengantar="IPIK"
-//                    )
                 }
 
             }else{
@@ -153,49 +139,6 @@ class DetailAmplopActivity : AppCompatActivity() {
             }
         }
 
-//        btn_terima.setOnClickListener {
-//
-//            startActivity(Intent(this, DiterimaActivity::class.java))
-//
-//            val builder = AlertDialog.Builder(this)
-//            val view = layoutInflater.inflate(R.layout.accepted, null)
-//            builder.setView(view)
-//            val dialog = builder.show()
-//            val penerima = view.findViewById<EditText>(R.id.penerima).text
-//
-//            view.save_builder.setOnClickListener {
-//                amplop.child("diterima").setValue(penerima.toString())
-//                amplop.child("status").setValue("Diterima")
-//                dialog.dismiss()
-//                btn_terima.visibility = View.INVISIBLE
-//                btn_tolak.visibility = View.INVISIBLE
-//            }
-//
-//            view.close_builder.setOnClickListener {
-//                dialog.dismiss()
-//            }
-//        }
-
-
-//        btn_tolak.setOnClickListener {
-//            val builder = AlertDialog.Builder(this)
-//            val view = layoutInflater.inflate(R.layout.rejected, null)
-//            builder.setView(view)
-//            val dialog = builder.show()
-//            val ditolak = view.findViewById<EditText>(R.id.penolak).text
-//
-//            view.save_builders.setOnClickListener {
-//                amplop.child("return").setValue(ditolak.toString())
-//                amplop.child("status").setValue("Return")
-//                dialog.dismiss()
-//                btn_terima.visibility = View.INVISIBLE
-//                btn_tolak.visibility = View.INVISIBLE
-//            }
-//
-//            view.close_builders.setOnClickListener {
-//                dialog.dismiss()
-//            }
-//        }
     }
 
     private fun updateGagal(

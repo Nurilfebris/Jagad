@@ -17,7 +17,13 @@ import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.aplikasijagad.databinding.ActivityDiterimaBinding
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
+import com.aplikasijagad.API.Repository
+import com.aplikasijagad.Model.DataAPI
+import com.aplikasijagad.Signature.SigantureActivity
+import com.aplikasijagad.ViewModel.MainViewModel
+import com.aplikasijagad.ViewModel.MainViewModelFactory
 import com.aplikasijagad.models.Amplop
 import com.github.gcacace.signaturepad.views.SignaturePad
 import com.google.android.gms.tasks.Continuation
@@ -31,16 +37,19 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_diterima.*
+import kotlinx.android.synthetic.main.rejected.view.*
 import java.io.*
 import java.util.*
 import kotlin.jvm.Throws
+import kotlin.math.log
 
 class DiterimaActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityDiterimaBinding
     private lateinit var submit: Button
     private lateinit var auth: FirebaseAuth
     private lateinit var listAmplop: MutableList<Amplop>
+    private lateinit var viewModel: MainViewModel
+
 
     private val PERMISSION_CODE = 1000
     private val IMAGE_CAPTURE_CODE = 1001
@@ -60,37 +69,34 @@ class DiterimaActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         listAmplop = mutableListOf()
         user = auth.currentUser!!
-
+        val repository = Repository()
+        val viewModelFactory = MainViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         storageRef = FirebaseStorage.getInstance().reference.child("Bukti images")
 
-        dropDown()
-        val penerima = findViewById<EditText>(R.id.penerima).text
+        val extra = intent.extras
 
-        val data = intent.getParcelableExtra<Amplop>("data")
+        if (extra != null) {
+            val data = extra.getParcelable<DataAPI>(EXTRA_DATA)
+            cobagetid.text=data?.status
+            if (data!!.status == "2") {
+                saveupdate_btn.setOnClickListener {
+                    Log.d("cobates","ssssssss")
 
-        //set permission
-        verifyStoragePermissions(this);
-
-        //draw signature
-        signaturePad.setOnSignedListener(object : SignaturePad.OnSignedListener {
-            override fun onStartSigning() {
-                //Toast.makeText(this@MainActivity, "Mulai menulis...", Toast.LENGTH_SHORT).show()
+                    updateSukses(
+                        id_amplop = "TTB20210014 ",
+                        mobile_driver_diterima_nama ="Si Alamat C",
+                        mobile_driver_diterima_foto ="catur.png",
+                        mobile_driver_diterima_ttd ="ctur_ttd.png",
+                        mobile_driver_diterima_jenis_penerima ="1",
+                        mobile_driver_pengantar="IPIK"
+                    )
+                    Toast.makeText(
+                        this, "tes",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-
-            override fun onSigned() {
-                btnSave.setEnabled(true)
-                btnClear.setEnabled(true)
-            }
-
-            override fun onClear() {
-                btnSave.setEnabled(false)
-                btnClear.setEnabled(false)
-            }
-        })
-
-        //clear signature
-        btnClear.setOnClickListener {
-            signaturePad.clear()
         }
 
         //save signature
@@ -120,25 +126,59 @@ class DiterimaActivity : AppCompatActivity() {
             }
         }
 
+        dropDown()
+        val penerima = findViewById<EditText>(R.id.penerima).text
+
+        val data = intent.getParcelableExtra<Amplop>("data")
+
+        //set permission
+        verifyStoragePermissions(this);
+
+        //draw signature
+        signaturePad.setOnSignedListener(object : SignaturePad.OnSignedListener {
+            override fun onStartSigning() {
+                //Toast.makeText(this@MainActivity, "Mulai menulis...", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onSigned() {
+                btnSave.setEnabled(true)
+                btnClear.setEnabled(true)
+            }
+
+            override fun onClear() {
+                btnSave.setEnabled(false)
+                btnClear.setEnabled(false)
+
+            }
+        })
+
+        //clear signature
+        btnClear.setOnClickListener {
+            signaturePad.clear()
+        }
+
+
 //        onItemSelectedStatus()
         capture_btn.setOnClickListener {
             //if system os is Marshmallow or Above, we need to request runtime permission
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.CAMERA)
                     == PackageManager.PERMISSION_DENIED ||
                     checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_DENIED){
+                    == PackageManager.PERMISSION_DENIED
+                ) {
                     //permission was not enabled
-                    val permission = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    val permission = arrayOf(
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    )
                     //show popup to request permission
                     requestPermissions(permission, PERMISSION_CODE)
-                }
-                else{
+                } else {
                     //permission already granted
                     openCamera()
                 }
-            }
-            else{
+            } else {
                 //system os is < marshmallow
                 openCamera()
             }
@@ -155,6 +195,7 @@ class DiterimaActivity : AppCompatActivity() {
 //            btn_tolak.visibility = View.INVISIBLE
 //        }
     }
+
     override fun onSaveInstanceState(oldInstanceState: Bundle) {
         super.onSaveInstanceState(oldInstanceState)
         oldInstanceState.clear()
@@ -165,23 +206,23 @@ class DiterimaActivity : AppCompatActivity() {
         dropDownText = findViewById(R.id.dropdown_text)
 
         val items = arrayOf(
-            "Satpam" ,
-            "Teman Kantor" ,
-            "Temen Kerja" ,
-            "Temen Dekat" ,
-            "Sahabat Selamanya" ,
+            "Satpam",
+            "Teman Kantor",
+            "Temen Kerja",
+            "Temen Dekat",
+            "Sahabat Selamanya",
             "Orang Rumah"
         )
 
         val adapter = ArrayAdapter(
-            this ,
-            R.layout.dropddown_item ,
+            this,
+            R.layout.dropddown_item,
             items
         )
 
         dropDownText.setAdapter(adapter)
         dropDownText.onItemClickListener =
-            AdapterView.OnItemClickListener { p0 , p1 , p2 , p3 ->
+            AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
                 val category = items[p2]
                 dropDownText.setText(category)
             }
@@ -222,37 +263,36 @@ class DiterimaActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         //called when image was captured from camera intent
-        if (resultCode == Activity.RESULT_OK){
+        if (resultCode == Activity.RESULT_OK) {
             //set image captured to image view
             image_view.setImageURI(image_uri)
             uploadImageToDatabase()
         }
     }
 
-    private fun uploadImageToDatabase(){
+    private fun uploadImageToDatabase() {
 
-        if (image_uri!=null){
+        if (image_uri != null) {
 
-            val fileRef = storageRef!!.child(System.currentTimeMillis().toString()+".jpg")
+            val fileRef = storageRef!!.child(System.currentTimeMillis().toString() + ".jpg")
             var uploadTask: StorageTask<*>
             uploadTask = fileRef.putFile(image_uri!!)
 
-            uploadTask.continueWithTask(Continuation <UploadTask.TaskSnapshot, Task<Uri>>{ task ->
+            uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
 
-                if (!task.isSuccessful)
-                {
-                    task.exception?.let{
+                if (!task.isSuccessful) {
+                    task.exception?.let {
                         throw it
                     }
                 }
                 return@Continuation fileRef.downloadUrl
-            }).addOnCompleteListener{ task ->
-                if (task.isSuccessful){
+            }).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
 
                     val downloadUrl = task.result
                     val url = downloadUrl.toString()
 
-                    val mapProfileImage = HashMap<String,Any>()
+                    val mapProfileImage = HashMap<String, Any>()
                     mapProfileImage["profile"] = url
                 }
             }
@@ -273,9 +313,10 @@ class DiterimaActivity : AppCompatActivity() {
             }
         }
 
-        if (requestCode == PERMISSION_CODE){
+        if (requestCode == PERMISSION_CODE) {
             if (grantResults.size > 0 &&
-            grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                grantResults[0] == PackageManager.PERMISSION_GRANTED
+            ) {
                 openCamera()
             }
         }
@@ -353,7 +394,9 @@ class DiterimaActivity : AppCompatActivity() {
         return result
     }
 
+
     companion object {
+        const val EXTRA_DATA = "extra_data"
         private const val REQUEST_EXTERNAL_STORAGE = 1
         private val PERMISSIONS_STORAGE = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         fun verifyStoragePermissions(activity: DiterimaActivity?) {
@@ -370,4 +413,32 @@ class DiterimaActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun updateSukses(
+        id_amplop: String,
+        mobile_driver_diterima_nama: String,
+        mobile_driver_diterima_foto: String,
+        mobile_driver_diterima_ttd: String,
+        mobile_driver_diterima_jenis_penerima: String,
+        mobile_driver_pengantar: String
+    ) {
+        viewModel.putUpdateSuksesViewModel(
+            id_amplop,
+            mobile_driver_diterima_nama,
+            mobile_driver_diterima_foto,
+            mobile_driver_diterima_ttd,
+            mobile_driver_diterima_jenis_penerima,
+            mobile_driver_pengantar
+        )
+        viewModel.myResponseUpdateSukses.observe(this, { response ->
+            when {
+                response.isSuccessful -> {
+                    Log.d("hahasukses", response.body().toString())
+                    Log.d("hahasukses", response.code().toString())
+                }
+            }
+        })
+    }
+
+
 }

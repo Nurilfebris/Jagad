@@ -66,13 +66,20 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Nama Penerima"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                />
+            <TextView
+                android:id="@+id/cobagetid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="coba get text"/>
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/image_view"
-            android:layout_width="193dp"
-            android:layout_height="168dp"
+            android:layout_width="173dp"
+            android:layout_height="148dp"
             android:layout_below="@+id/teksbuil"
             android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
@@ -84,6 +91,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.33" />
 
+
         <Button
             android:id="@+id/capture_btn"
             android:layout_width="wrap_content"
@@ -91,11 +99,26 @@
             android:layout_below="@+id/image_view"
             android:layout_alignStart="@+id/image_view"
             android:layout_alignEnd="@+id/image_view"
-            android:layout_marginStart="0dp"
+            android:layout_marginStart="-93dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginEnd="93dp"
             android:background="@drawable/roundbtn"
             android:text="Capture"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/saveupdate_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view"
+            android:layout_alignStart="@+id/image_view"
+            android:layout_alignEnd="@+id/image_view"
+            android:layout_marginStart="101dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="-101dp"
+            android:background="@drawable/roundbtn"
+            android:text="Simpan"
             android:textColor="#FFFFFF" />
 
         <LinearLayout
@@ -107,15 +130,6 @@
             android:layout_marginTop="5dp"
             android:background="@color/colorPrimaryDark"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="Tanda Tangan Disini"
-                android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:textStyle="italic" />
 
         </LinearLayout>
 
@@ -137,7 +151,7 @@
             <com.github.gcacace.signaturepad.views.SignaturePad
                 android:id="@+id/signaturePad"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/background_border"
                 app:penColor="@android:color/black" />
 
@@ -188,5 +202,19 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view"
+            android:layout_alignEnd="@+id/image_view"
+            android:layout_marginTop="-10dp"
+            android:layout_marginEnd="107dp"
+            android:padding="20dp"
+            android:text="Tanda Tangan Disini"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
     </RelativeLayout>
+
 </layout>
