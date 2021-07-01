@@ -2,49 +2,180 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/accepted"
+    android:id="@+id/sukses"
     android:layout_width="350dp"
-    android:layout_height="220dp"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
     app:cardCornerRadius="10dp"
     android:backgroundTint="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="116dp"
+        android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:backgroundTintMode="screen">
 
-        <ImageView
-            android:id="@+id/close_builder"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_close_24" />
-
-        <EditText
-            android:id="@+id/penerima"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/spinStatus"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Nama Penerima"
-            android:inputType="textPersonName"
-            app:layout_constraintStart_toEndOf="@+id/save_builder"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/penerima"
+            android:orientation="vertical"
+            android:textColorHint="@color/black"
+            app:endIconMode="dropdown_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/save_builder"
-            android:layout_width="wrap_content"
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:editable="false"
+                android:fontFamily="@font/poppins"
+                android:textSize="7pt"
+                tools:ignore="LabelFor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/teksbuil"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/biru"
-            android:text="Simpan"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/spinStatus"
+            app:boxStrokeColor="@color/btn"
+            android:layout_marginHorizontal="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/spinStatus"
+            app:layout_constraintStart_toStartOf="@+id/spinStatus"
+            app:layout_constraintTop_toBottomOf="@+id/spinStatus">
+
+            <EditText
+                android:id="@+id/penerimasukses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Nama Penerima"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="173dp"
+            android:layout_height="148dp"
+            android:layout_below="@+id/teksbuil"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_image_24"
             app:layout_constraintEnd_toEndOf="@+id/teksbuil"
             app:layout_constraintStart_toStartOf="@+id/teksbuil"
             app:layout_constraintTop_toBottomOf="@+id/teksbuil" />
+
+        <Button
+            android:id="@+id/capture_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view"
+            android:layout_alignStart="@+id/image_view"
+            android:layout_alignEnd="@+id/image_view"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/roundbtn"
+            android:text="Capture"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="@+id/teksbuil"
+            app:layout_constraintTop_toBottomOf="@+id/image_view" />
+
+        <Button
+            android:id="@+id/savesukses_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_view"
+            android:layout_alignStart="@+id/image_view"
+            android:layout_alignEnd="@+id/image_view"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/roundbtn"
+            android:text="Simpan"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="@+id/teksbuil"
+            app:layout_constraintTop_toBottomOf="@+id/image_view" />
+
+
+        <RelativeLayout
+            android:id="@+id/signatureContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/capture_btn">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/signatureDescription"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorPrimary" />
+
+            <com.github.gcacace.signaturepad.views.SignaturePad
+                android:id="@+id/signaturePad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_border"
+                app:penColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/signatureDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:text="*Saya Setuju dengan Syarat dan Ketentuan"
+                android:textColor="@android:color/black" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <Button
+                android:id="@+id/btnClear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_baseline_delete_24"
+                android:enabled="false"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="Clear"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_baseline_save_24"
+                android:enabled="false"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="Save"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

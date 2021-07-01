@@ -1,13 +1,9 @@
 package com.aplikasijagad.ViewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aplikasijagad.API.DataRepository
 import com.aplikasijagad.API.Repository
-import com.aplikasijagad.Model.APICoronaProv
-import com.aplikasijagad.Model.ApiSPB
 import com.aplikasijagad.Model.DataAPI
 import com.aplikasijagad.models.DataBerhasil
 import com.aplikasijagad.models.ResultGagal
@@ -43,11 +39,11 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
 
     fun putUpdateSuksesViewModel(
         id_amplop: String,
-        mobile_driver_diterima_nama : String,
-        mobile_driver_diterima_foto : String,
-        mobile_driver_diterima_ttd : String,
-        mobile_driver_diterima_jenis_penerima : String,
-        mobile_driver_pengantar : String
+        mobile_driver_diterima_nama: String,
+        mobile_driver_diterima_foto: String,
+        mobile_driver_diterima_ttd: String,
+        mobile_driver_diterima_jenis_penerima: String,
+        mobile_driver_pengantar: String
     ) {
         viewModelScope.launch {
             val response = repository.putDataSukses(

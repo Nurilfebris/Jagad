@@ -4,7 +4,6 @@ import com.aplikasijagad.Model.*
 import com.aplikasijagad.models.DataBerhasil
 import com.aplikasijagad.models.ResultGagal
 import retrofit2.Response
-import java.util.*
 
 class Repository {
 
@@ -25,12 +24,14 @@ class Repository {
     }
 
     suspend fun putDataSukses(
+        //mobile_driver_diterima_foto: Map<String, RequestBody>,
+
         id_amplop: String,
-        mobile_driver_diterima_nama : String,
-        mobile_driver_diterima_foto : String,
-        mobile_driver_diterima_ttd : String,
-        mobile_driver_diterima_jenis_penerima : String,
-        mobile_driver_pengantar : String
+        mobile_driver_diterima_nama: String,
+        mobile_driver_diterima_foto: String,
+        mobile_driver_diterima_ttd: String,
+        mobile_driver_diterima_jenis_penerima: String,
+        mobile_driver_pengantar: String
     ) : Response<DataBerhasil> {
         return  RetrofitInstance.api.updateBerhasil(
             id_amplop,

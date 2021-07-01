@@ -3,7 +3,9 @@ package com.aplikasijagad
 import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -21,7 +23,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.aplikasijagad.API.Repository
 import com.aplikasijagad.Model.DataAPI
-import com.aplikasijagad.Signature.SigantureActivity
 import com.aplikasijagad.ViewModel.MainViewModel
 import com.aplikasijagad.ViewModel.MainViewModelFactory
 import com.aplikasijagad.models.Amplop
@@ -36,12 +37,11 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
+import kotlinx.android.synthetic.main.activity_detail_amplop.*
 import kotlinx.android.synthetic.main.activity_diterima.*
-import kotlinx.android.synthetic.main.rejected.view.*
+import okhttp3.RequestBody
 import java.io.*
 import java.util.*
-import kotlin.jvm.Throws
-import kotlin.math.log
 
 class DiterimaActivity : AppCompatActivity() {
 
@@ -49,17 +49,21 @@ class DiterimaActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var listAmplop: MutableList<Amplop>
     private lateinit var viewModel: MainViewModel
-
+    private lateinit var categori: String
 
     private val PERMISSION_CODE = 1000
     private val IMAGE_CAPTURE_CODE = 1001
-    var image_uri: Uri? = null
+    private var image_uri: Uri? = null
+    private var postPath: String? = null
     private lateinit var database: FirebaseDatabase
     private var storageRef: StorageReference? = null
     private lateinit var user: FirebaseUser
+    private var part_image: String? = null
 
     private lateinit var textInputLayout: TextInputLayout
     private lateinit var dropDownText: AutoCompleteTextView
+    lateinit var preferences: SharedPreferences
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,29 +78,58 @@ class DiterimaActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         storageRef = FirebaseStorage.getInstance().reference.child("Bukti images")
 
+        preferences = this.getSharedPreferences(ARGS_ROLE, Context.MODE_PRIVATE)
+        val roleId = preferences.getString(ARGS_ROLE, "")
+        val namadriver = preferences.getString(ARGS_ROLE, "")
+        Log.d("yy", roleId.toString())
+        //binding.roleId.text = roleId.toString()
         val extra = intent.extras
 
-        if (extra != null) {
-            val data = extra.getParcelable<DataAPI>(EXTRA_DATA)
-            cobagetid.text=data?.status
-            if (data!!.status == "2") {
-                saveupdate_btn.setOnClickListener {
-                    Log.d("cobates","ssssssss")
+        saveupdate_btn.setOnClickListener {
+            Log.d("Hahah", "test berhasil")
 
-                    updateSukses(
-                        id_amplop = "TTB20210014 ",
-                        mobile_driver_diterima_nama ="Si Alamat C",
-                        mobile_driver_diterima_foto ="catur.png",
-                        mobile_driver_diterima_ttd ="ctur_ttd.png",
-                        mobile_driver_diterima_jenis_penerima ="1",
-                        mobile_driver_pengantar="IPIK"
-                    )
-                    Toast.makeText(
-                        this, "tes",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
+            Log.d("cobates", "ssssssss")
+            Log.d("cobates", roleId.toString())
+            Log.d("cobates", penerimayee.text.toString())
+            Log.d("cobates", dropDownText.text.toString())
+            Log.d("cobates", namadriver.toString())
+            Log.d("cobates", image_uri?.path.toString())
+
+
+            val roleId = preferences.getString(ARGS_ROLE, "")
+            val namadriver = preferences.getString(ARGS_ROLE, "")
+            val id_amplop = roleId.toString()
+            val id_amplop1 =RequestBody
+            val mobile_driver_diterima_nama = penerimayee.text.toString()
+            val mobile_driver_diterima_jenis_penerima = dropDownText.text.toString()
+            val mobile_driver_pengantar = namadriver.toString()
+            //val map = HashMap<String, RequestBody>()
+            //val file = File(postPath!!)
+
+//            val requestBody = RequestBody.create("*/*".toMediaTypeOrNull(), file)
+//            map.put("file\"; filename=\"" + file.name + "\"", requestBody)
+
+            updateSukses(
+                id_amplop = roleId.toString(),
+                mobile_driver_diterima_nama =mobile_driver_diterima_nama,
+                mobile_driver_diterima_foto =image_uri.toString(),
+                mobile_driver_diterima_ttd =image_uri.toString(),
+                mobile_driver_diterima_jenis_penerima =mobile_driver_diterima_jenis_penerima,
+                mobile_driver_pengantar =namadriver.toString()
+            )
+            Log.d("cobadata", mobile_driver_diterima_nama)
+            Toast.makeText(
+                this, "Berhasil",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        if (extra != null) {
+            val data = extra.getParcelable<DataAPI>(DiterimaActivity.EXTRA_DATA)
+            tv_rincian1.text = data?.id_amplop
+            // if (data!!.status == "2") {
+
+            //}
         }
 
         //save signature
@@ -107,6 +140,8 @@ class DiterimaActivity : AppCompatActivity() {
                     this, "Tanda tangan disimpan ke dalam Galeri",
                     Toast.LENGTH_SHORT
                 ).show()
+                Log.d("ttd", addJpgSignatureToGallery(signatureBitmap).toString())
+
             } else {
                 Toast.makeText(
                     this, "Tidak dapat menyimpan Tanda Tangan",
@@ -118,6 +153,7 @@ class DiterimaActivity : AppCompatActivity() {
                     this, "Tanda tangan SVG disimpan ke dalam Galeri",
                     Toast.LENGTH_SHORT
                 ).show()
+                Log.d("ttdyy", addSvgSignatureToGallery(signaturePad.signatureSvg).toString())
             } else {
                 Toast.makeText(
                     this, "Tidak dapat menyimpan Tanda Tangan SVG",
@@ -127,9 +163,6 @@ class DiterimaActivity : AppCompatActivity() {
         }
 
         dropDown()
-        val penerima = findViewById<EditText>(R.id.penerima).text
-
-        val data = intent.getParcelableExtra<Amplop>("data")
 
         //set permission
         verifyStoragePermissions(this);
@@ -157,8 +190,6 @@ class DiterimaActivity : AppCompatActivity() {
             signaturePad.clear()
         }
 
-
-//        onItemSelectedStatus()
         capture_btn.setOnClickListener {
             //if system os is Marshmallow or Above, we need to request runtime permission
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -183,17 +214,6 @@ class DiterimaActivity : AppCompatActivity() {
                 openCamera()
             }
         }
-
-//        save_data.setOnClickListener {
-//            amplop.child("diterima").setValue(penerima.toString())
-////            amplop.child("pilihpenerima").setValue(spinStatus.toString())
-//            amplop.child("imageUrl").setValue(image_uri)
-//
-//            amplop.child("status").setValue("Diterima")
-//
-//            btn_terima.visibility = View.INVISIBLE
-//            btn_tolak.visibility = View.INVISIBLE
-//        }
     }
 
     override fun onSaveInstanceState(oldInstanceState: Bundle) {
@@ -223,41 +243,22 @@ class DiterimaActivity : AppCompatActivity() {
         dropDownText.setAdapter(adapter)
         dropDownText.onItemClickListener =
             AdapterView.OnItemClickListener { p0, p1, p2, p3 ->
-                val category = items[p2]
-                dropDownText.setText(category)
+                // val category = items[p2]
+                categori = items[p2]
+                dropDownText.setText(categori)
             }
     }
-
-//    private fun onItemSelectedStatus() {
-//        val option_penerima = binding.spinStatus
-//        val options_penerima = arrayOf("Satpam", "Teman Kerja", "Orang Rumah", "Mandor")
-//        option_penerima.adapter =
-//            ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, options_penerima)
-//        option_penerima.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onNothingSelected(p0: AdapterView<*>?) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onItemSelected(
-//                parent: AdapterView<*>? ,
-//                view: View? ,
-//                position: Int ,
-//                id: Long
-//            ) {
-//            }
-//        }
-//
-//    }
 
     private fun openCamera() {
         val values = ContentValues()
         values.put(MediaStore.Images.Media.TITLE, "New Picture")
         values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera")
-        image_uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        image_uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)!!
         //camera intent
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri)
         startActivityForResult(cameraIntent, IMAGE_CAPTURE_CODE)
+        Log.d("opencamera", "muncul")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -266,6 +267,10 @@ class DiterimaActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK) {
             //set image captured to image view
             image_view.setImageURI(image_uri)
+            postPath = image_uri!!.path
+
+            Log.d("bismmilaah", image_uri!!.path.toString())
+
             uploadImageToDatabase()
         }
     }
@@ -334,7 +339,7 @@ class DiterimaActivity : AppCompatActivity() {
     }
 
     //Image Signature
-    @Throws(IOException::class)
+    //@Throws(IOException::class)
     fun saveBitmapToJPG(bitmap: Bitmap, photo: File?) {
         val newBitmap = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(newBitmap)
@@ -396,6 +401,7 @@ class DiterimaActivity : AppCompatActivity() {
 
 
     companion object {
+        const val ARGS_ROLE = "ROLE_ID"
         const val EXTRA_DATA = "extra_data"
         private const val REQUEST_EXTERNAL_STORAGE = 1
         private val PERMISSIONS_STORAGE = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -424,10 +430,10 @@ class DiterimaActivity : AppCompatActivity() {
     ) {
         viewModel.putUpdateSuksesViewModel(
             id_amplop,
-            mobile_driver_diterima_nama,
-            mobile_driver_diterima_foto,
-            mobile_driver_diterima_ttd,
-            mobile_driver_diterima_jenis_penerima,
+            mobile_driver_diterima_nama ,
+            mobile_driver_diterima_foto ,
+            mobile_driver_diterima_ttd ,
+            mobile_driver_diterima_jenis_penerima ,
             mobile_driver_pengantar
         )
         viewModel.myResponseUpdateSukses.observe(this, { response ->
@@ -439,6 +445,5 @@ class DiterimaActivity : AppCompatActivity() {
             }
         })
     }
-
 
 }
