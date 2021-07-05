@@ -258,7 +258,10 @@ class DiterimaActivity : AppCompatActivity() {
     private fun uploadImageToDatabase() {
         if (image_uri != null) {
 
-            val fileRef = storageRef!!.child( System.currentTimeMillis().toString() + ".jpg")
+            preferences = this.getSharedPreferences(ARGS_ROLE, Context.MODE_PRIVATE)
+            val roleId = preferences.getString(ARGS_ROLE, "id_amplop")
+
+            val fileRef = storageRef!!.child(roleId.toString()  + ".jpg")
             var uploadTask: StorageTask<*>
             uploadTask = fileRef.putFile(image_uri!!)
             uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
