@@ -48,6 +48,7 @@ class DetailAmplopActivity : AppCompatActivity() {
     private lateinit var dropDownText: AutoCompleteTextView
     private lateinit var textInputLayout: TextInputLayout
     lateinit var sharedPreferences: SharedPreferences
+    lateinit var sharedPreferences2: SharedPreferences
 
     private val PERMISSION_CODE = 1000
     private val IMAGE_CAPTURE_CODE = 1001
@@ -67,6 +68,7 @@ class DetailAmplopActivity : AppCompatActivity() {
 
         //shared prerenced
         sharedPreferences = getSharedPreferences(ARGS_ROLE, Context.MODE_PRIVATE)
+        sharedPreferences2 = getSharedPreferences(ARGS_ROLE2, Context.MODE_PRIVATE)
         val repository = Repository()
         var isShowPass = false
         val viewModelFactory = MainViewModelFactory(repository)
@@ -123,8 +125,10 @@ class DetailAmplopActivity : AppCompatActivity() {
 
                     val editorSaved: SharedPreferences.Editor = sharedPreferences.edit()
                     editorSaved.putString(ARGS_ROLE, data.id_amplop)
-                    editorSaved.putString(ARGS_ROLE, data.nama_driver)
                     editorSaved.apply()
+                    val editorSaved2: SharedPreferences.Editor = sharedPreferences2.edit()
+                    editorSaved2.putString(ARGS_ROLE2, data.nama_driver)
+                    editorSaved2.apply()
                     Log.d("asa",data.id_amplop)
                     startActivity(Intent(this, DiterimaActivity::class.java))
 
@@ -292,6 +296,7 @@ class DetailAmplopActivity : AppCompatActivity() {
 
     companion object {
         const val ARGS_ROLE = "ROLE_ID"
+        const val ARGS_ROLE2 = "ROLE_ID2"
         const val ARGS_SHARED = "SHARED_PREF"
         const val EXTRA_DATA = "extra_data"
         private const val REQUEST_EXTERNAL_STORAGE = 1

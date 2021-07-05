@@ -25,6 +25,7 @@ import com.aplikasijagad.API.Repository
 import com.aplikasijagad.Model.DataAPI
 import com.aplikasijagad.ViewModel.MainViewModel
 import com.aplikasijagad.ViewModel.MainViewModelFactory
+import com.aplikasijagad.kurir.DashboardKurir
 import com.aplikasijagad.models.Amplop
 import com.github.gcacace.signaturepad.views.SignaturePad
 import com.google.android.gms.tasks.Continuation
@@ -39,13 +40,13 @@ import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_detail_amplop.*
 import kotlinx.android.synthetic.main.activity_diterima.*
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.*
 import java.util.*
 
 class DiterimaActivity : AppCompatActivity() {
 
-    private lateinit var submit: Button
     private lateinit var auth: FirebaseAuth
     private lateinit var listAmplop: MutableList<Amplop>
     private lateinit var viewModel: MainViewModel
@@ -58,11 +59,11 @@ class DiterimaActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private var storageRef: StorageReference? = null
     private lateinit var user: FirebaseUser
-    private var part_image: String? = null
 
     private lateinit var textInputLayout: TextInputLayout
     private lateinit var dropDownText: AutoCompleteTextView
     lateinit var preferences: SharedPreferences
+    lateinit var preferences2: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,61 +77,7 @@ class DiterimaActivity : AppCompatActivity() {
         val repository = Repository()
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        storageRef = FirebaseStorage.getInstance().reference.child("Bukti images")
-
-        preferences = this.getSharedPreferences(ARGS_ROLE, Context.MODE_PRIVATE)
-        val roleId = preferences.getString(ARGS_ROLE, "")
-        val namadriver = preferences.getString(ARGS_ROLE, "")
-        Log.d("yy", roleId.toString())
-        //binding.roleId.text = roleId.toString()
-        val extra = intent.extras
-
-        saveupdate_btn.setOnClickListener {
-            Log.d("Hahah", "test berhasil")
-
-            Log.d("cobates", "ssssssss")
-            Log.d("cobates", roleId.toString())
-            Log.d("cobates", penerimayee.text.toString())
-            Log.d("cobates", dropDownText.text.toString())
-            Log.d("cobates", namadriver.toString())
-            Log.d("cobates", image_uri?.path.toString())
-
-
-            val roleId = preferences.getString(ARGS_ROLE, "")
-            val namadriver = preferences.getString(ARGS_ROLE, "")
-            val id_amplop = roleId.toString()
-            val id_amplop1 =RequestBody
-            val mobile_driver_diterima_nama = penerimayee.text.toString()
-            val mobile_driver_diterima_jenis_penerima = dropDownText.text.toString()
-            val mobile_driver_pengantar = namadriver.toString()
-            //val map = HashMap<String, RequestBody>()
-            //val file = File(postPath!!)
-
-//            val requestBody = RequestBody.create("*/*".toMediaTypeOrNull(), file)
-//            map.put("file\"; filename=\"" + file.name + "\"", requestBody)
-
-            updateSukses(
-                id_amplop = roleId.toString(),
-                mobile_driver_diterima_nama =mobile_driver_diterima_nama,
-                mobile_driver_diterima_foto =image_uri.toString(),
-                mobile_driver_diterima_ttd =image_uri.toString(),
-                mobile_driver_diterima_jenis_penerima =mobile_driver_diterima_jenis_penerima,
-                mobile_driver_pengantar =namadriver.toString()
-            )
-            Log.d("cobadata", mobile_driver_diterima_nama)
-            Toast.makeText(
-                this, "Berhasil",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-
-        if (extra != null) {
-            val data = extra.getParcelable<DataAPI>(DiterimaActivity.EXTRA_DATA)
-            tv_rincian1.text = data?.id_amplop
-            // if (data!!.status == "2") {
-
-            //}
-        }
+        storageRef = FirebaseStorage.getInstance().reference.child("Diterima Sukses")
 
         //save signature
         btnSave.setOnClickListener {
@@ -160,6 +107,38 @@ class DiterimaActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
+            preferences = this.getSharedPreferences(ARGS_ROLE, Context.MODE_PRIVATE)
+            preferences2 = this.getSharedPreferences(ARGS_ROLE2, Context.MODE_PRIVATE)
+            val roleId = preferences.getString(ARGS_ROLE, "id_amplop")
+            val namadriver = preferences2.getString(ARGS_ROLE2, "nama_driver")
+            Log.d("yy", roleId.toString())
+            Log.d("yy", namadriver.toString())
+            val extra = intent.extras
+
+            Log.d("Hahah", "test berhasil")
+
+            Log.d("cobates", "ssssssss")
+            Log.d("cobates", roleId.toString())
+            Log.d("cobates", penerimayee.text.toString())
+            Log.d("cobates", dropDownText.text.toString())
+            Log.d("cobates", image_uri?.path.toString())
+
+            val mobile_driver_diterima_nama = penerimayee.text.toString()
+            val mobile_driver_diterima_jenis_penerima = dropDownText.text.toString()
+
+            updateSukses(
+                id_amplop = roleId.toString(),
+                mobile_driver_diterima_jenis_penerima = mobile_driver_diterima_jenis_penerima,
+                mobile_driver_pengantar = namadriver.toString(),
+                mobile_driver_diterima_nama = mobile_driver_diterima_nama
+            )
+            Log.d("cobadata", roleId.toString())
+            Toast.makeText(
+                this, "Berhasil",
+                Toast.LENGTH_SHORT
+            ).show()
+            startActivity(Intent(this, DashboardKurir::class.java))
         }
 
         dropDown()
@@ -176,6 +155,7 @@ class DiterimaActivity : AppCompatActivity() {
             override fun onSigned() {
                 btnSave.setEnabled(true)
                 btnClear.setEnabled(true)
+
             }
 
             override fun onClear() {
@@ -276,13 +256,11 @@ class DiterimaActivity : AppCompatActivity() {
     }
 
     private fun uploadImageToDatabase() {
-
         if (image_uri != null) {
 
-            val fileRef = storageRef!!.child(System.currentTimeMillis().toString() + ".jpg")
+            val fileRef = storageRef!!.child( System.currentTimeMillis().toString() + ".jpg")
             var uploadTask: StorageTask<*>
             uploadTask = fileRef.putFile(image_uri!!)
-
             uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
 
                 if (!task.isSuccessful) {
@@ -399,9 +377,9 @@ class DiterimaActivity : AppCompatActivity() {
         return result
     }
 
-
     companion object {
         const val ARGS_ROLE = "ROLE_ID"
+        const val ARGS_ROLE2 = "ROLE_ID2"
         const val EXTRA_DATA = "extra_data"
         private const val REQUEST_EXTERNAL_STORAGE = 1
         private val PERMISSIONS_STORAGE = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -422,21 +400,17 @@ class DiterimaActivity : AppCompatActivity() {
 
     private fun updateSukses(
         id_amplop: String,
-        mobile_driver_diterima_nama: String,
-        mobile_driver_diterima_foto: String,
-        mobile_driver_diterima_ttd: String,
         mobile_driver_diterima_jenis_penerima: String,
-        mobile_driver_pengantar: String
+        mobile_driver_pengantar: String,
+        mobile_driver_diterima_nama: String
     ) {
-        viewModel.putUpdateSuksesViewModel(
+        viewModel.putUpdateBerhasilViewModel(
             id_amplop,
-            mobile_driver_diterima_nama ,
-            mobile_driver_diterima_foto ,
-            mobile_driver_diterima_ttd ,
-            mobile_driver_diterima_jenis_penerima ,
-            mobile_driver_pengantar
+            mobile_driver_diterima_jenis_penerima,
+            mobile_driver_pengantar,
+            mobile_driver_diterima_nama
         )
-        viewModel.myResponseUpdateSukses.observe(this, { response ->
+        viewModel.myResponseUpdateBerhasil.observe(this, { response ->
             when {
                 response.isSuccessful -> {
                     Log.d("hahasukses", response.body().toString())

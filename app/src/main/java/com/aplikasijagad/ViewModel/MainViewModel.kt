@@ -8,12 +8,15 @@ import com.aplikasijagad.Model.DataAPI
 import com.aplikasijagad.models.DataBerhasil
 import com.aplikasijagad.models.ResultGagal
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
     val myResponse: MutableLiveData<Response<List<DataAPI>>> = MutableLiveData()
     val myResponseUpdateGagal: MutableLiveData<Response<ResultGagal>> = MutableLiveData()
-    val myResponseUpdateSukses: MutableLiveData<Response<DataBerhasil>> = MutableLiveData()
+//    val myResponseUpdateSukses: MutableLiveData<Response<DataBerhasil>> = MutableLiveData()
+    val myResponseUpdateBerhasil: MutableLiveData<Response<DataBerhasil>> = MutableLiveData()
 
     fun getResiviewModel() {
         viewModelScope.launch {
@@ -37,24 +40,41 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-    fun putUpdateSuksesViewModel(
+    fun putUpdateBerhasilViewModel(
         id_amplop: String,
-        mobile_driver_diterima_nama: String,
-        mobile_driver_diterima_foto: String,
-        mobile_driver_diterima_ttd: String,
         mobile_driver_diterima_jenis_penerima: String,
-        mobile_driver_pengantar: String
+        mobile_driver_pengantar: String,
+        mobile_driver_diterima_nama: String
     ) {
         viewModelScope.launch {
-            val response = repository.putDataSukses(
+            val response = repository.putDataBerhasil(
                 id_amplop,
-                mobile_driver_diterima_nama ,
-                mobile_driver_diterima_foto ,
-                mobile_driver_diterima_ttd ,
-                mobile_driver_diterima_jenis_penerima ,
-                mobile_driver_pengantar
+                mobile_driver_diterima_jenis_penerima,
+                mobile_driver_pengantar,
+                mobile_driver_diterima_nama
             )
-            myResponseUpdateSukses.value = response
+            myResponseUpdateBerhasil.value = response
         }
     }
+
+//    fun putUpdateSuksesViewModel(
+//        mobile_driver_diterima_foto: MultipartBody.Part,
+//        id_amplop: RequestBody,
+//        mobile_driver_diterima_ttd: MultipartBody.Part,
+//        mobile_driver_diterima_nama: RequestBody,
+//        mobile_driver_diterima_jenis_penerima: RequestBody,
+//        mobile_driver_pengantar: RequestBody
+//    ) {
+//        viewModelScope.launch {
+//            val response = repository.putDataSukses(
+//                mobile_driver_diterima_foto ,
+//                id_amplop,
+//                mobile_driver_diterima_ttd ,
+//                mobile_driver_diterima_nama ,
+//                mobile_driver_diterima_jenis_penerima ,
+//                mobile_driver_pengantar
+//            )
+//            myResponseUpdateSukses.value = response
+//        }
+//    }
 }
