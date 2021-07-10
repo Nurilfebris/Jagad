@@ -8,13 +8,98 @@
         android:layout_height="match_parent"
         tools:context=".DiterimaActivity">
 
+        <RelativeLayout
+            android:id="@+id/homeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".kurir.HomeKurirFragment">
+
+            <ImageView
+                android:id="@+id/tv_login"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/logo_main" />
+
+            <TextView
+                android:id="@+id/tv_dterima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_login"
+                android:layout_marginStart="160dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins"
+                android:maxLines="1"
+                android:text="DITERIMA"
+                android:textColor="@color/biru"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_rincian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="90dp"
+                android:layout_marginStart="120dp"
+                android:fontFamily="@font/poppins"
+                android:maxLines="1"
+                android:text="No TTB :"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_rincian1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tv_rincian"
+                android:layout_alignBottom="@+id/tv_rincian"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_toEndOf="@+id/tv_rincian"
+                android:fontFamily="@font/poppins"
+                android:maxLines="1"
+                android:text="AMP00001"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/spinTujuan"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="130dp"
+            android:hint="Tujuan"
+            android:orientation="vertical"
+            android:textColorHint="@color/black"
+            app:endIconMode="dropdown_menu">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_text2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:editable="false"
+                android:fontFamily="@font/poppins"
+                android:textSize="7pt"
+                tools:ignore="LabelFor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/spinStatus"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/spinTujuan"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:hint="@string/penerima"
             android:orientation="vertical"
             android:textColorHint="@color/black"
@@ -31,7 +116,6 @@
                 android:fontFamily="@font/poppins"
                 android:textSize="7pt"
                 tools:ignore="LabelFor" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -41,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/spinStatus"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="6dp"
             app:boxStrokeColor="@color/btn"
             app:layout_constraintEnd_toEndOf="@+id/spinStatus"
             app:layout_constraintStart_toStartOf="@+id/spinStatus"
@@ -59,11 +143,11 @@
 
         <ImageView
             android:id="@+id/image_view"
-            android:layout_width="173dp"
-            android:layout_height="148dp"
+            android:layout_width="128dp"
+            android:layout_height="89dp"
             android:layout_below="@+id/teksbuil"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="8dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_image_24"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -74,7 +158,7 @@
 
         <Button
             android:id="@+id/capture_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/image_view"
             android:layout_alignStart="@+id/image_view"
@@ -91,7 +175,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/capture_btn"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:background="@color/colorPrimaryDark"
             android:orientation="horizontal">
 
@@ -99,9 +183,8 @@
 
         <RelativeLayout
             android:id="@+id/signatureContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/linearButton"
+            android:layout_width="358dp"
+            android:layout_height="147dp"
             android:layout_below="@id/linearMessage"
             android:layout_marginHorizontal="30dp">
 
@@ -125,7 +208,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="16dp"
                 android:text="*Saya Setuju dengan Syarat dan Ketentuan"
                 android:textColor="@android:color/black" />
 
@@ -135,7 +217,7 @@
             android:id="@+id/linearButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/signatureContainer"
             android:orientation="horizontal">
 
             <Button
@@ -148,7 +230,7 @@
                 android:enabled="false"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
-                android:text="Clear"
+                android:text="Batal"
                 android:textColor="@android:color/white" />
 
             <Button
@@ -161,11 +243,10 @@
                 android:enabled="false"
                 android:paddingStart="30dp"
                 android:paddingEnd="30dp"
-                android:text="Save"
+                android:text="Simpan"
                 android:textColor="@android:color/white" />
-
         </LinearLayout>
 
-    </RelativeLayout>
 
+    </RelativeLayout>
 </layout>

@@ -62,8 +62,6 @@ class KategoriFragment : Fragment(), ResiListener, View.OnClickListener {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_kategori, container, false)
         return binding.root
-
-
     }
 
     override fun onViewCreated(view: View , savedInstanceState: Bundle?) {
@@ -82,17 +80,17 @@ class KategoriFragment : Fragment(), ResiListener, View.OnClickListener {
 
         infoProfile()
         //orderKurir()
-        cv_toko.setOnClickListener {
+        cv_berhasil.setOnClickListener {
             val intent = Intent (getActivity(), DashboardKurir::class.java)
             getActivity()?.startActivity(intent)
             getActivity()?.finish()
         }
-        cv_pool.setOnClickListener {
+        cv_dikirim.setOnClickListener {
             val intent = Intent (getActivity(), DashboardKurir::class.java)
             getActivity()?.startActivity(intent)
             getActivity()?.finish()
         }
-        cv_ekspedisi.setOnClickListener {
+        cv_sedang_proses.setOnClickListener {
             val intent = Intent (getActivity(), DashboardKurir::class.java)
             getActivity()?.startActivity(intent)
             getActivity()?.finish()
@@ -120,7 +118,7 @@ class KategoriFragment : Fragment(), ResiListener, View.OnClickListener {
                         for (userSnapshot in p0.children) {
                             val data = userSnapshot.getValue(Users::class.java)
                             data?.let { listUsers.add(it) }
-                            tv_namadriver.text=data!!.name
+                            tv_namadrivers.text=data!!.name
                         }
                     }
                 }

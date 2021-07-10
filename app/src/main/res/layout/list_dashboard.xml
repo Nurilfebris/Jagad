@@ -8,12 +8,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:orientation="vertical">
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_toko"
-            android:layout_marginTop="18dp"
+            android:id="@+id/cv_dikirim"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             app:cardCornerRadius="15dp"
             android:clickable="true"
             android:focusable="true"
@@ -24,20 +24,20 @@
                 android:background="@color/biru"
                 android:padding="10dp">
                 <TextView
-                    android:id="@+id/tv_toko"
+                    android:id="@+id/tv_dikirim"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TOKO"
-                    android:textSize="30sp"
+                    android:text="TOTAL DIKIRIM"
+                    android:textSize="26sp"
                     android:textColor="#ffff"
                     android:textStyle="bold"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_centerHorizontal="true"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/jumlah_order"
-                    android:layout_below="@+id/tv_toko"
+                    android:layout_below="@+id/tv_dikirim"
                     android:textSize="30sp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="3dp"
@@ -46,11 +46,11 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_pool"
+            android:id="@+id/cv_sedang_proses"
             android:clickable="true"
             android:layout_marginTop="18dp"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             app:cardCornerRadius="15dp"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground">
@@ -60,20 +60,20 @@
                 android:background="@color/biru"
                 android:padding="10dp">
                 <TextView
-                    android:id="@+id/tv_pool"
+                    android:id="@+id/tv_sedang_proses"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="POOL"
-                    android:textSize="30sp"
+                    android:text="TOTAL SEDANG PROSES"
+                    android:textSize="26sp"
                     android:textColor="#ffff"
                     android:textStyle="bold"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_centerHorizontal="true"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/jumlah_order"
-                    android:layout_below="@+id/tv_pool"
+                    android:layout_below="@+id/tv_sedang_proses"
                     android:textSize="30sp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="3dp"
@@ -82,10 +82,10 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_ekspedisi"
+            android:id="@+id/cv_berhasil"
             android:layout_marginTop="18dp"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             app:cardCornerRadius="15dp"
             android:clickable="true"
             android:focusable="true"
@@ -96,20 +96,55 @@
                 android:background="@color/biru"
                 android:padding="10dp">
                 <TextView
-                    android:id="@+id/tv_ekspedisi"
+                    android:id="@+id/tv_berhasil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EKSPEDISI"
-                    android:textSize="30sp"
+                    android:text="TOTAL BERHASIL"
+                    android:textSize="26sp"
                     android:textColor="#ffff"
                     android:textStyle="bold"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_centerHorizontal="true"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/jumlah_order"
-                    android:layout_below="@+id/tv_ekspedisi"
+                    android:layout_below="@+id/tv_berhasil"
+                    android:textSize="30sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="3dp"
+                    android:textColor="#ffff"/>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView> <androidx.cardview.widget.CardView
+            android:id="@+id/cv_retur"
+            android:layout_marginTop="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:cardCornerRadius="15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/biru"
+                android:padding="10dp">
+                <TextView
+                    android:id="@+id/tv_retur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TOTAL RETURN"
+                    android:textSize="26sp"
+                    android:textColor="#ffff"
+                    android:textStyle="bold"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/jumlah_order"
+                    android:layout_below="@+id/tv_retur"
                     android:textSize="30sp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="3dp"
